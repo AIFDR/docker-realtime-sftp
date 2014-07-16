@@ -1,6 +1,6 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-FROM ubuntu:trusty
-MAINTAINER Tim Sutton<tim@linfiniti.com>
+FROM ubuntu:14.04
+MAINTAINER Akbar Gumbira <akbargumbira@gmail.com>
 
 RUN  export DEBIAN_FRONTEND=noninteractive
 ENV  DEBIAN_FRONTEND noninteractive
@@ -21,7 +21,7 @@ ADD sshd.conf /etc/supervisor/conf.d/sshd.conf
 
 # Ubuntu 14.04 by default only allows non pwd based root login
 # We disable that but also create an .ssh dir so you can copy
-# up your key. NOTE: This is not a particularly robust setup 
+# up your key. NOTE: This is not a particularly robust setup
 # security wise and we recommend to NOT expose ssh as a public
 # service.
 RUN rpl "PermitRootLogin without-password" "PermitRootLogin yes" /etc/ssh/sshd_config

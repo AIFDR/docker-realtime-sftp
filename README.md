@@ -1,30 +1,30 @@
-docker-ssh
+docker-realtime-sftp
 ==========
 
-A simple docker container that runs ssh
+A simple docker container that runs sftp for realtime using default ssh port (22)
 
-To build the image do:
-
-```
-docker build -t kartoza/ssh git://github.com/timlinux/docker-ssh
-```
-
-To run a container do:
+To build the image with the name 'AIFDR/sftp-realtime' do:
 
 ```
-docker run --name "ssh" -p 2222:22 -d -t kartoza/ssh
+sh build.sh
+```
+
+To run a container do (will make a container with name 'sftp-realtime' and will mount volume for realtime needs):
+
+```
+sh run.sh
 ```
 
 To log into your container do:
 
 ```
-ssh root@localhost -p 2222
+ssh root@localhost
 ```
 
 Default password will appear in docker logs:
 
 ```
-docker logs <container name> | grep root login password
+docker logs sftp-realtime | grep 'root login password'
 ```
 
 -----------

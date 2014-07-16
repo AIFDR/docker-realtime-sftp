@@ -1,1 +1,1 @@
-docker.io build -t kartoza/ssh .
+docker.io build -t AIFDR/sftp-realtime .
