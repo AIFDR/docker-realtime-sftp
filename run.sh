@@ -7,3 +7,9 @@ docker.io run --name='inasafe-realtime-sftp' \
 	-p 9222:22 \
 	-d -t AIFDR/sftp-realtime
 
+echo "You can copy files into this container with these credentials:"
+docker cp inasafe-realtime-sftp:/credentials .
+cat credentials
+rm credentials
+
+
