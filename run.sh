@@ -8,9 +8,9 @@ docker.io rm inasafe-realtime-sftp
 
 mkdir -p $SHAKEDIR
 docker.io run --name='inasafe-realtime-sftp' \
-	-v $SHAKEDIR:/shakemaps \
+	-v $SHAKEDIR:$SHAKEDIR \
 	-p 9222:22 \
-	-d -t AIFDR/${SFTP_IMAGE}
+	-d -t aifdr/${SFTP_IMAGE}
 
 echo "You can copy files into this container with these credentials:"
 docker.io cp inasafe-realtime-sftp:/credentials .

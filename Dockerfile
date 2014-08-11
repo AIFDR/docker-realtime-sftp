@@ -33,12 +33,15 @@ RUN mkdir /var/run/sshd
 # i.e. docker cp inasafe-realtime-sftp:/etc/realtime.credentials realtime.credentials
 
 RUN REALTIME_PASSWORD=`pwgen -c -n -1 12`; echo "User: realtime Password: $REALTIME_PASSWORD" > /credentials && useradd -m -d /home/realtime -s /bin/bash realtime; echo "realtime:$REALTIME_PASSWORD" | chpasswd; echo "Realtime user password $REALTIME_PASSWORD"
-RUN mkdir -p /home/realtime/shakemaps; chown -R realtime. /home/realtime/shakemaps
 
 
 #-------------Application Specific Stuff ----------------------------------------------------
 # Open port 22 so linked containers can see it
 EXPOSE 22
 
-CMD ["/usr/sbin/sshd", "-D"]
+# Called on first run of docker
+ADD start.sh /start.sh
+RUN chmod 0755 /start.sh
+
+CMD /start.sh
 
