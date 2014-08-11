@@ -27,12 +27,12 @@ RUN mkdir /var/run/sshd
 #RUN mkdir /root/.ssh
 #RUN chmod o-rwx /root/.ssh
 
-# Create a non priviledged user 'realtime'
+# Create a non privileged user 'realtime'
 # You will be able to get the user credentials by doing
 # docker cp <container-id>/<path> <local filesystem path>
 # i.e. docker cp inasafe-realtime-sftp:/etc/realtime.credentials realtime.credentials
 
-RUN REALTIME_PASSWORD=`pwgen -c -n -1 12`; echo "User: realtime Password: $REALTIME_PASSWORD" > /credentials && useradd -m -d /home/realtime -s /bin/bash realtime; echo "realtime:$REALTIME_PASSWORD" | chpasswd; echo "Realtime user password $REALTIME_PASSWORD"
+RUN REALTIME_PASSWORD=`pwgen -c -n -1 12`; echo "User: realtime Password: $REALTIME_PASSWORD" > /credentials && useradd -m -d /home/realtime -s /bin/bash -u 2000 realtime; echo "realtime:$REALTIME_PASSWORD" | chpasswd; echo "Realtime user password $REALTIME_PASSWORD"
 
 
 #-------------Application Specific Stuff ----------------------------------------------------
